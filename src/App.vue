@@ -1,28 +1,66 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ApiKeySetter :apiKey.sync="apiKey" />
+    <!-- {{apiKey}} -->
+    <main>
+      <ShoppingList :api-key="apiKey" />
+    </main>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ApiKeySetter from "./components/ApiKeySetter";
+import ShoppingList from "./components/ShoppingList";
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    ApiKeySetter,
+    ShoppingList
+  },
+  data() {
+    return {
+      apiKey: ""
+    };
+  },
+  mounted() {
+    if (localStorage.apiKey) {
+      this.apiKey = localStorage.apiKey;
+    }
+  },
+  watch: {
+    apiKey(newApiKey) {
+      localStorage.apiKey = newApiKey;
+    }
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+@import url('https://fonts.googleapis.com/css?family=Comfortaa&display=swap');
+
+body {
+  --primary-color: #fed766;
+  --background-color: #525252;
+  --darker-color: #020101;
+  --standard-text-color: white;
+  --font: 'Comfortaa';
+
+  padding: 0px;
+  margin: 0px;
+  font-family: var(--font);
+  background: var(--background-color);
+}
+header {
+  background: #313131;
+}
+h1 {
+  color: var(--standard-text-color);
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  font-weight: 100;
+}
+main {
+  display: flex;
+  justify-content: center;
 }
 </style>
