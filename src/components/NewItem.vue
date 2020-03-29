@@ -1,5 +1,5 @@
 <template>
-  <li class="item">
+  <li class="item" :class="{submited: isSubmitted}">
     <form @submit.prevent="requested">
       <input type="text" v-model="itemName" />
     </form>
@@ -10,11 +10,13 @@
 export default {
   data() {
     return {
-      itemName: ""
+      itemName: "",
+      isSubmitted: false
     };
   },
   methods: {
     requested: function() {
+      this.isSubmitted = true;
       this.$emit("requested", this.itemName);
     }
   }
@@ -25,6 +27,10 @@ export default {
 .form {
   width: 0%;
 }
+.submited, .submited input {
+    background: var(--primary-color);
+}
+
 input {
   border: none;
   font-family: var(--font);

@@ -68,6 +68,8 @@ export default {
         .then(data => {
           this.shoppingList.push(data.data);
           this.$refs.newItem.itemName = "";
+          this.$refs.newItem.isSubmitted = false;
+
           // this.shoppingList.sort((i, i2) => i._id - i2._id);
         })
         .catch(err => {
@@ -141,6 +143,7 @@ ul {
 
   border-left: 6px solid var(--darker-color);
   border-bottom: 3px solid var(--darker-color);
+  border-bottom-left-radius: 28px;
 }
 
 .shopping-list {
