@@ -1,5 +1,5 @@
 <template>
-  <li class="item" @dblclick="bought">{{item.name}}</li>
+  <li class="item" v-touch:swipe.right="bought" @dblclick="bought">{{item.name}}</li>
 </template>
 
 <script>

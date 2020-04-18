@@ -27,8 +27,10 @@ export default {
 .form {
   width: 0%;
 }
-.submited, .submited input {
-    background: var(--primary-color);
+.submited,
+.submited input {
+  color: var(--background-color);
+  background: var(--primary-color);
 }
 
 input {
@@ -37,7 +39,7 @@ input {
 
   font-size: 1em;
   background: #f0eab3;
-  width: 75%;
+  width: 100%;
 }
 input:active,
 input:focus {

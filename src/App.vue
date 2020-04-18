@@ -62,5 +62,6 @@ h1 {
 main {
   display: flex;
   justify-content: center;
+  padding: 0px 10px;
 }
 </style>

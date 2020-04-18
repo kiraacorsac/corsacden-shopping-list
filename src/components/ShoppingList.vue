@@ -135,7 +135,7 @@ ul {
   margin: 10px 0px;
 
   font-family: var(--font);
-  font-size: 4em;
+  font-size: 2em;
 
   padding: 3px;
   padding-top: 25px;
@@ -156,5 +156,11 @@ ul {
 .msg {
   color: #f0eab3;
   font-size: 3em;
+}
+
+@media only screen and (min-width: 768px) {
+  .item {
+      font-size: 4em;
+  }
 }
 </style>
