@@ -3,7 +3,7 @@
     <transition-group name="list" tag="ul">
       <NewItem @requested="add" :key="'new'" ref="newItem" />
       <ShoppingItem
-        v-for="item in shoppingList.filter(item=>!item.done)"
+        v-for="item in sortedList.filter(item=>!item.done)"
         :key="item._id"
         :item="item"
         @bought="remove"
@@ -21,6 +21,7 @@
 
 <script>
 import axios from "axios";
+import _ from "lodash";
 import ShoppingItem from "./ShoppingItem";
 import NewItem from "./NewItem";
 import Spinner from "./Spinner";
@@ -36,10 +37,16 @@ export default {
       error: false,
       loaded: false,
       shoppingList: [],
-      penis: "pepe"
     };
   },
 
+  computed: { 
+    sortedList(){
+      let sorted = _.sortBy(this.shoppingList, (si) => si._created)
+                    .reverse();
+      return sorted;
+    }
+  },
   methods: {
     remove: function(item) {
       this.shoppingList = this.shoppingList.filter(i => i !== item);
@@ -82,7 +89,7 @@ export default {
   mounted() {
     this.$nextTick().then(() =>
       axios
-        .get(this.$db, {
+        .get(this.$db + "?metafields=true", {
           headers: {
             "x-api-key": this.apiKey
           }
